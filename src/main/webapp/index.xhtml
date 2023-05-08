@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough">
+
+<h:head>
+    <title>Main page</title>
+    <h:outputStylesheet name="mystyles.css" />
+</h:head>
+<h:body>
+
+    <div id="menu">
+        <ul>
+            <li><a href="index.xhtml">Home</a></li>
+            <li><a href="myBatis/universities.xhtml">MyBatis implementation</a></li>
+        </ul>
+    </div>
+
+    <div class="wrapperDiv">
+        <div class="wrapperInsideDiv">
+            <div class="card">
+                <h2>Universities:</h2>
+                <ol class="myList">
+                    <ui:repeat value="#{universities.universityList}" var="university">
+                        <div class="marginDiv">
+                            <li><h:link value="#{university.title}" outcome="students?universityId=#{university.id}"/></li>
+                        </div>
+                    </ui:repeat>
+                </ol>
+            </div>
+        </div>
+        <div class="wrapperInsideDiv">
+            <div class="card">
+                <h2>Add university:</h2>
+                <h:form>
+
+                    <h:inputText type="text"
+                                 styleClass="myInput"
+                                 a:placeholder="Title"
+                                 value="#{universities.universityToCreate.title}"
+                                 required="true"/>
+
+                    <div class="marginDiv">
+                    <h:commandButton value="Add"
+                                     styleClass="myButton"
+                                     actionListener="#{universities.createUniversity()}"
+                                     action="index?faces-redirect=true"/>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </div>
+
+</h:body>
+</html>

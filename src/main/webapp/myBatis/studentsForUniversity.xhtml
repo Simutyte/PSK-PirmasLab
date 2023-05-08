@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:head>
+    <title>MyBatis</title>
+    <h:outputStylesheet name="MyBatisStyles.css" />
+</h:head>
+<h:body>
+
+    <div id="menu">
+        <ul>
+            <li><a href="http://localhost:8080/pirmasLab/index.xhtml">Home</a></li>
+            <li><a href="universities.xhtml">MyBatis implementation</a></li>
+        </ul>
+    </div>
+
+    <div class="wrapperDiv">
+        <div class="wrapperInsideDiv">
+            <div class="card" style="height: 300px;">
+                <h2>Students who study in #{myBatisStudents.university.title}:</h2>
+                <ol>
+                    <ui:repeat value="#{myBatisStudents.allStudents}" var="student">
+                        <li>#{student.name} #{student.surname}
+                            <ul>
+                                <ui:repeat value="#{myBatisStudents.getStudentSubjects(student.id)}" var="subject">
+                                    <li>#{subject.title} #{subject.credits} credits</li>
+                                </ui:repeat>
+                            </ul>
+                        </li>
+                    </ui:repeat>
+                </ol>
+            </div>
+        </div>
+
+        <div class="wrapperInsideDiv">
+            <div class="card" style="height: 300px;">
+                <h2>All subjects in #{myBatisStudents.university.title}:</h2>
+                <ol>
+                    <ui:repeat value="#{myBatisStudents.universitySubjects}" var="subject">
+                        <li>#{subject.title} - #{subject.credits} credits</li>
+                    </ui:repeat>
+                </ol>
+            </div>
+        </div>
+    </div>
+</h:body>
+</html>
